@@ -23,7 +23,7 @@ const HeaderLink = ({ to, text }: HeaderLinkProps) => {
 
 export const Header = () => {
   return (
-    <div className="flex flex-row bg-bgPrimary px-16">
+    <div className="w-full fixed flex flex-row bg-bgPrimary px-16">
       <HeaderLink to="/" text="Все котики" />
       <HeaderLink to="/favourites" text="Любимые котики" />
     </div>

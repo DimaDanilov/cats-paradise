@@ -1,7 +1,9 @@
+import { PageLayout } from "layouts/PageLayout";
+
 export const FavouritesPage = () => {
   return (
-    <div>
+    <PageLayout>
       <h1>Favourites Page</h1>
-    </div>
+    </PageLayout>
   );
 };
