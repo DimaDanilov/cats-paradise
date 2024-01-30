@@ -3,16 +3,15 @@ import HeartFilled from "assets/icons/favourite_fill_icon.svg";
 import { observer } from "mobx-react-lite";
 import CatStore from "store/CatStore";
 
-type ImageCardProps = Pick<CatImageModel, "url" | "isFavourite"> & {
-  index: number;
-};
+type ImageCardProps = Pick<CatImageModel, "url" | "isFavourite" | "id">;
 
 export const ImageCard = observer(
-  ({ url, isFavourite, index }: ImageCardProps) => {
+  ({ url, isFavourite, id }: ImageCardProps) => {
     const catStore = CatStore;
 
     function changeFavouriteStatus() {
-      catStore.changeFavouriteStatus(index, !isFavourite);
+      catStore.changeFavouriteStatus(id, !isFavourite);
+      console.log(id);
     }
 
     return (

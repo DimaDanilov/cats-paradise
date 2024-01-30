@@ -9,10 +9,10 @@ export const ImageGrid = ({ imageArray }: ImageGrid) => {
     <div
       className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 items-center justify-center pb-40`}
     >
-      {imageArray.map((catImage: CatImageModel, index: number) => (
+      {imageArray.map((catImage: CatImageModel) => (
         <ImageCard
-          key={index}
-          index={index}
+          key={catImage.id}
+          id={catImage.id}
           url={catImage.url}
           isFavourite={catImage.isFavourite}
         />

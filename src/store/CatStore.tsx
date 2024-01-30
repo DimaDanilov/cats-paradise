@@ -13,11 +13,22 @@ class CatStore {
   async loadCats() {
     if (this.isLoading !== true) {
       this.isLoading = true;
-      const newPictures = await getCatPictures();
-      runInAction(() => {
-        this.cats = this.cats.concat(newPictures);
-        this.isLoading = false;
-      });
+      try {
+        const newPictures = await getCatPictures();
+        runInAction(() => {
+          const uniqueIds = new Set(this.cats.map((cat) => cat.id));
+
+          const filteredNewPictures = newPictures.filter(
+            (cat) => !uniqueIds.has(cat.id)
+          );
+
+          this.cats = this.cats.concat(filteredNewPictures);
+        });
+      } finally {
+        runInAction(() => {
+          this.isLoading = false;
+        });
+      }
     }
   }
 
@@ -25,10 +36,17 @@ class CatStore {
     return this.cats.filter((cat) => cat.isFavourite === true);
   }
 
-  changeFavouriteStatus(index: number, isFavourite: boolean) {
-    const updatedCats = this.cats.slice();
-    updatedCats[index] = { ...updatedCats[index], isFavourite };
-    this.cats = updatedCats;
+  changeFavouriteStatus(id: string, isFavourite: boolean) {
+    const updatedCats = this.cats.map((cat) => {
+      if (cat.id === id) {
+        return { ...cat, isFavourite };
+      }
+      return cat;
+    });
+
+    runInAction(() => {
+      this.cats = updatedCats;
+    });
   }
 }
 
