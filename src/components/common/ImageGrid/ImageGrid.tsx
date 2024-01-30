@@ -6,7 +6,9 @@ type ImageGrid = {
 
 export const ImageGrid = ({ imageArray }: ImageGrid) => {
   return (
-    <div className={`grid grid-cols-5 gap-5 items-center justify-center`}>
+    <div
+      className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 items-center justify-center`}
+    >
       {imageArray.map((catImage: CatImageModel, index: number) => (
         <ImageCard
           key={index}
