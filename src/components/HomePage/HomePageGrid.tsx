@@ -7,6 +7,26 @@ import { Loader } from "components/common/Loader/Loader";
 export const HomePageGrid = observer(() => {
   const catStore = CatStore;
 
+  const handleScroll = () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight;
+
+    if (bottom) {
+      catStore.loadCats();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     if (catStore.cats.length === 0) {
       catStore.loadCats();
@@ -14,17 +34,11 @@ export const HomePageGrid = observer(() => {
   }, []);
 
   return (
-    <>
+    <div onScroll={handleScroll}>
       {catStore.isLoading && (
         <Loader className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/3 z-50" />
       )}
       <ImageGrid imageArray={catStore.cats} />
-      <button
-        className="w-full border-2 border-black p-2"
-        onClick={() => catStore.loadCats()}
-      >
-        Load more cats
-      </button>
-    </>
+    </div>
   );
 });
