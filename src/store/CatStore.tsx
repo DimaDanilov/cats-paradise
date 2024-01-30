@@ -3,7 +3,7 @@ import { getCatPictures } from "api/CatApi";
 
 class CatStore {
   cats: CatImageModel[] = [];
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -11,12 +11,14 @@ class CatStore {
 
   // Fetches new Cats from the server.
   async loadCats() {
-    this.isLoading = true;
-    const newPictures = await getCatPictures();
-    runInAction(() => {
-      this.cats = this.cats.concat(newPictures);
-      this.isLoading = false;
-    });
+    if (this.isLoading !== true) {
+      this.isLoading = true;
+      const newPictures = await getCatPictures();
+      runInAction(() => {
+        this.cats = this.cats.concat(newPictures);
+        this.isLoading = false;
+      });
+    }
   }
 
   get favouriteCats() {
