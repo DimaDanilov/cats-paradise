@@ -10,11 +10,11 @@ export default defineConfig({
   resolve: {
     alias: {
       public: "/public",
-      src: "/src",
       api: "/src/api",
       components: "/src/components",
       layouts: "/src/layouts",
       pages: "/src/pages",
+      store: "/src/store",
       types: "/src/types",
     },
   },
