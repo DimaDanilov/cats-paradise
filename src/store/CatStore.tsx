@@ -20,7 +20,13 @@ class CatStore {
   }
 
   get favouriteCats() {
-    return this.cats.filter((cat) => cat.favourite === true);
+    return this.cats.filter((cat) => cat.isFavourite === true);
+  }
+
+  changeFavouriteStatus(index: number, isFavourite: boolean) {
+    const updatedCats = this.cats.slice();
+    updatedCats[index] = { ...updatedCats[index], isFavourite };
+    this.cats = updatedCats;
   }
 }
 

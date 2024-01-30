@@ -4,7 +4,7 @@ export class CatAdapter {
       (item: any) =>
         <CatImageModel>{
           ...item,
-          favourite: false,
+          isFavourite: false,
         }
     );
   }

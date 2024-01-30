@@ -3,5 +3,5 @@ type CatImageModel = {
   url: string;
   width: number;
   height: number;
-  favourite: boolean;
+  isFavourite: boolean;
 };
