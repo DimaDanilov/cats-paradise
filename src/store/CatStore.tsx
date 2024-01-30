@@ -18,6 +18,10 @@ class CatStore {
       this.isLoading = false;
     });
   }
+
+  get favouriteCats() {
+    return this.cats.filter((cat) => cat.favourite === true);
+  }
 }
 
 export default new CatStore();

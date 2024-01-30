@@ -1,15 +1,12 @@
 import { ImageCard } from "../ImageCard/ImageCard";
 
 type ImageGrid = {
-  colsAmount: number;
   imageArray: CatImageModel[];
 };
 
-export const ImageGrid = ({ colsAmount, imageArray }: ImageGrid) => {
+export const ImageGrid = ({ imageArray }: ImageGrid) => {
   return (
-    <div
-      className={`grid grid-cols-${colsAmount} gap-5 items-center justify-center`}
-    >
+    <div className={`grid grid-cols-5 gap-5 items-center justify-center`}>
       {imageArray.map((catImage: CatImageModel, index: number) => (
         <ImageCard url={catImage.url} key={index} />
       ))}

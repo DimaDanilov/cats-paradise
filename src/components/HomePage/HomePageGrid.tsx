@@ -7,8 +7,10 @@ export const HomePageGrid = observer(() => {
   const catStore = CatStore;
 
   useEffect(() => {
-    catStore.loadCats();
+    if (catStore.cats.length === 0) {
+      catStore.loadCats();
+    }
   }, [catStore]);
 
-  return <ImageGrid colsAmount={5} imageArray={catStore.cats} />;
+  return <ImageGrid imageArray={catStore.cats} />;
 });

@@ -5,5 +5,5 @@ import CatStore from "store/CatStore";
 export const FavouritesPageGrid = observer(() => {
   const catStore = CatStore;
 
-  return <ImageGrid colsAmount={5} imageArray={catStore.cats} />;
+  return <ImageGrid imageArray={catStore.favouriteCats} />;
 });

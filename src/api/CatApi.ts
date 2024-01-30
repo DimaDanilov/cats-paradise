@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CatAdapter } from "./CatAdapter";
 
 export const getCatPictures = async () => {
   try {
@@ -6,7 +7,7 @@ export const getCatPictures = async () => {
       `https://api.thecatapi.com/v1/images/search`,
       { params: { limit: 10 } }
     );
-    return response.data;
+    return CatAdapter.transform(response.data);
   } catch (error) {
     console.error("Error fetching data from API", error);
     return [];
