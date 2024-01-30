@@ -16,8 +16,11 @@ export const ImageCard = observer(
     }
 
     return (
-      <div className="relative">
-        <img src={url} />
+      <div className="relative aspect-square">
+        {/* /Image of a cat */}
+        <img className="object-cover w-full aspect-square" src={url} />
+
+        {/* Border div for heart icon  */}
         <div
           className="absolute cursor-pointer right-3 bottom-3 rounded-full bg-white/[.5] p-2"
           onClick={changeFavouriteStatus}
